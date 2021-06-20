@@ -18,5 +18,18 @@ def main():
     execute_from_command_line(sys.argv)
 
 
+def run_wsgi():
+    # use wsgi from STD lib
+    from wsgiref.simple_server import make_server
+    from proj1.wsgi import application
+
+    with make_server('', 8000, application) as httpd:
+        print("Serving on port 8000...")
+
+        # Serve until process is killed
+        httpd.serve_forever()
+
+
 if __name__ == '__main__':
-    main()
+    # main()
+    run_wsgi()
